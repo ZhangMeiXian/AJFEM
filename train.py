@@ -17,10 +17,10 @@ from torch.utils.data import DataLoader
 from classifier.AlexNet import AlexNet
 from classifier.VGG import vgg
 
-sys.stdout = Logger("./logs/log_{}.txt".format(datetime.datetime.now()))
+sys.stdout = Logger("ogs/log_vgg.txt")
 
 BATCH_SIZE = 32
-EPOCH = 5
+EPOCH = 50
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 transform = transforms.Compose([transforms.Resize((224, 224)),
@@ -40,7 +40,7 @@ net = vgg(model_name=model_name, num_classes=4, init_weights=True)
 net.to(device)
 loss_function = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.0002)
-save_path = "./AlexNet.pth"
+save_path = "models/AlexNet.pth"
 torch.save(net.state_dict(), save_path)
 
 for epoch in range(EPOCH):
