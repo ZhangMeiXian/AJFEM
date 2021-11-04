@@ -1,2 +1,2 @@
 # AJFEM
-For music emotion classification.
+For music emotion classification on 4Q audio emotion dataset.
