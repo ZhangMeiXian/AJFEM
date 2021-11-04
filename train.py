@@ -14,7 +14,8 @@ from utils.log_util import Logger
 from torchvision import transforms
 from utils.dataset_util import MyDataset
 from torch.utils.data import DataLoader
-from classifier.AlexNet import SingleCnnLSTM
+from classifier.AlexNet import AlexNet
+from classifier.VGG import vgg
 
 sys.stdout = Logger("./logs/log_{}.txt".format(datetime.datetime.now()))
 
@@ -33,7 +34,9 @@ test_loader = DataLoader(dataset=test_set, batch_size=180, shuffle=False)
 test_data_iter = iter(test_loader)
 test_image, test_label = test_data_iter.next()
 
-net = SingleCnnLSTM()
+
+model_name = "vgg16"
+net = vgg(model_name=model_name, num_classes=4, init_weights=True)
 net.to(device)
 loss_function = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=0.0002)

@@ -10,7 +10,7 @@ import torch
 import torch.nn.functional as F
 
 
-class SingleCnnLSTM(torch.nn.Module):
+class AlexNet(torch.nn.Module):
     """
     single log-mel CNN + LSTM
     """
